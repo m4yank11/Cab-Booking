@@ -4,6 +4,7 @@ const blackListTokenModel = require('../models/blackListToken.model');
 const { validationResult } = require('express-validator');
 
 
+
 module.exports.registerCaptain = async (req, res, next) => {
 
     const errors = validationResult(req);

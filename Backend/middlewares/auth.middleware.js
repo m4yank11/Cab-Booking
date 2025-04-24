@@ -2,7 +2,7 @@ const userModel = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const blacklistTokenModel = require('../models/blackListToken.model');
-const captainModel = require('../models/captain.model');
+const CaptainModel = require('../models/Captain.model');
 
 
 module.exports.authUser = async (req, res, next) => {
@@ -51,8 +51,8 @@ module.exports.authCaptain = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const captain = await captainModel.findById(decoded._id)
-        req.captain = captain;
+        const Captain = await CaptainModel.findById(decoded._id)
+        req.Captain = Captain;
 
         return next()
         

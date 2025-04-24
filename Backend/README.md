@@ -106,11 +106,11 @@ Requires a valid JWT token in the Authorization header or cookie:
     - `lastname` (string): User's last name (minimum 3 characters).   
   - `email` (string): User's email address (must be a valid email).
   - `password` (string): User's password (minimum 6 characters).
-- `token` (String): JWT Token## `/captains/register` Endpoint
+- `token` (String): JWT Token## `/Captains/register` Endpoint
 
 ### Description
 
-Registers a new captain by creating a captain account with the provided information.
+Registers a new Captain by creating a Captain account with the provided information.
 
 ### HTTP Method
 
@@ -134,11 +134,11 @@ The request body should be in JSON format and include the following fields:
 ### Example Response
 
 
-## `/captains/register` Endpoint
+## `/Captains/register` Endpoint
 
 ### Description
 
-Registers a new captain by creating a captain account with the provided information.
+Registers a new Captain by creating a Captain account with the provided information.
 
 ### HTTP Method
 
@@ -161,7 +161,7 @@ The request body should be in JSON format and include the following fields:
 
 ### Example Response
 
-- `captain` (object):
+- `Captain` (object):
   - `fullname` (object).
     - `firstname` (string): Captain's first name (minimum 3 characters).
     - `lastname` (string): Captain's last name (minimum 3 characters).   
@@ -174,11 +174,11 @@ The request body should be in JSON format and include the following fields:
     - `vehicleType` (string): Type of vehicle.
 - `token` (String): JWT Token
 
-## `/captains/login` Endpoint
+## `/Captains/login` Endpoint
 
 ### Description
 
-Authenticates a captain using their email and password, returning a JWT token upon successful login.
+Authenticates a Captain using their email and password, returning a JWT token upon successful login.
 
 ### HTTP Method
 
@@ -186,7 +186,7 @@ Authenticates a captain using their email and password, returning a JWT token up
 
 ### Endpoint
 
-`/captains/login`
+`/Captains/login`
 
 ### Request Body
 
@@ -197,7 +197,7 @@ The request body should be in JSON format and include the following fields:
 
 ### Example Response
 
-- `captain` (object):
+- `Captain` (object):
   - `fullname` (object).
     - `firstname` (string): Captain's first name (minimum 3 characters).
     - `lastname` (string): Captain's last name (minimum 3 characters).   
@@ -210,11 +210,11 @@ The request body should be in JSON format and include the following fields:
     - `vehicleType` (string): Type of vehicle.
 - `token` (String): JWT Token
 
-## `/captains/profile` Endpoint
+## `/Captains/profile` Endpoint
 
 ### Description
 
-Retrieves the profile information of the currently authenticated captain.
+Retrieves the profile information of the currently authenticated Captain.
 
 ### HTTP Method
 
@@ -227,7 +227,7 @@ Requires a valid JWT token in the Authorization header:
 
 ### Example Response
 
-- `captain` (object):
+- `Captain` (object):
   - `fullname` (object).
     - `firstname` (string): Captain's first name (minimum 3 characters).
     - `lastname` (string): Captain's last name (minimum 3 characters).   
@@ -238,11 +238,11 @@ Requires a valid JWT token in the Authorization header:
     - `capacity` (number): Vehicle passenger capacity.
     - `vehicleType` (string): Type of vehicle.
 
-## `/captains/logout` Endpoint
+## `/Captains/logout` Endpoint
 
 ### Description
 
-Logout the current captain and blacklist the token provided in cookie or headers.
+Logout the current Captain and blacklist the token provided in cookie or headers.
 
 ### HTTP Method
 

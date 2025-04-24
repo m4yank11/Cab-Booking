@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const captainSchema = new mongoose.Schema({
+const CaptainSchema = new mongoose.Schema({
     fullname: {
         firstname: {
             type: String,
@@ -70,22 +70,22 @@ const captainSchema = new mongoose.Schema({
 })
 
 
-captainSchema.methods.generateAuthToken = function () {
+CaptainSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
     return token;
 }
 
 
-captainSchema.methods.comparePassword = async function (password) {
+CaptainSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 }
 
 
-captainSchema.statics.hashPassword = async function (password) {
+CaptainSchema.statics.hashPassword = async function (password) {
     return await bcrypt.hash(password, 10);
 }
 
-const captainModel = mongoose.model('captain', captainSchema)
+const CaptainModel = mongoose.model('Captain', CaptainSchema)
 
 
-module.exports = captainModel;
+module.exports = CaptainModel;

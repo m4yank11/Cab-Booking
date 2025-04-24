@@ -1,5 +1,5 @@
-const captainModel = require('../models/captain.model');
-const captainService = require('../services/captain.service');
+const CaptainModel = require('../models/Captain.model');
+const CaptainService = require('../services/Captain.service');
 const blackListTokenModel = require('../models/blackListToken.model');
 const { validationResult } = require('express-validator');
 
@@ -14,16 +14,16 @@ module.exports.registerCaptain = async (req, res, next) => {
 
     const { fullname, email, password, vehicle } = req.body;
 
-    const isCaptainAlreadyExist = await captainModel.findOne({ email });
+    const isCaptainAlreadyExist = await CaptainModel.findOne({ email });
 
     if (isCaptainAlreadyExist) {
         return res.status(400).json({ message: 'Captain already exist' });
     }
 
 
-    const hashedPassword = await captainModel.hashPassword(password);
+    const hashedPassword = await CaptainModel.hashPassword(password);
 
-    const captain = await captainService.createCaptain({
+    const Captain = await CaptainService.createCaptain({
         firstname: fullname.firstname,
         lastname: fullname.lastname,
         email,
@@ -34,9 +34,9 @@ module.exports.registerCaptain = async (req, res, next) => {
         vehicleType: vehicle.vehicleType
     });
 
-    const token = captain.generateAuthToken();
+    const token = Captain.generateAuthToken();
 
-    res.status(201).json({ token, captain });
+    res.status(201).json({ token, Captain });
 
 }
 
@@ -48,27 +48,27 @@ module.exports.loginCaptain = async (req, res, next) => {
 
     const { email, password } = req.body;
 
-    const captain = await captainModel.findOne({ email }).select('+password');
+    const Captain = await CaptainModel.findOne({ email }).select('+password');
 
-    if (!captain) {
+    if (!Captain) {
         return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    const isMatch = await captain.comparePassword(password);
+    const isMatch = await Captain.comparePassword(password);
 
     if (!isMatch) {
         return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    const token = captain.generateAuthToken();
+    const token = Captain.generateAuthToken();
 
     res.cookie('token', token);
 
-    res.status(200).json({ token, captain });
+    res.status(200).json({ token, Captain });
 }
 
 module.exports.getCaptainProfile = async (req, res, next) => {
-    res.status(200).json({ captain: req.captain });
+    res.status(200).json({ Captain: req.Captain });
 }
 
 module.exports.logoutCaptain = async (req, res, next) => {
